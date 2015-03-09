@@ -1,0 +1,23 @@
+*.bak
+*.patch
+*.log
+*.tmp
+
+~*.dot
+~*.doc
+~*.docx
+~*.xlt
+~*.xls
+~*.xlsx
+
+bin/
+*.class
+
+# Package Files #
+*.war
+*.ear
+
+pspbrwse.jbf
+thumbs.db
+Thumbs.db
+~temp.html
