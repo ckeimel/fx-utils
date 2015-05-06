@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.scene.Node;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
@@ -212,7 +213,79 @@ public class TestNodeAdapter {
 		tabPane.getTabs().add(contextMenuTab.node);
 		tabPaneElement.children.add(contextMenuTab.element);
 		
+		Pair<Tab> toolBarTab = createToolBarTab();
+		tabPane.getTabs().add(toolBarTab.node);
+		tabPaneElement.children.add(toolBarTab.element);
+		
+		Pair<Tab> buttonBarTab = createButtonBarTab();
+		tabPane.getTabs().add(buttonBarTab.node);
+		tabPaneElement.children.add(buttonBarTab.element);
+		
 		return new Pair<TabPane>(tabPane, tabPaneElement);
+	}
+	
+	private Pair<Tab> createButtonBarTab() {
+		Tab tab = new Tab("ButtonBar Test");
+		TestModelElement<Tab> tabElement = new TestModelElement<>(tab);
+		
+		Pair<ButtonBar> buttonbar = createButtonBar();
+		tab.setContent(buttonbar.node);
+		tabElement.children.add(buttonbar.element);
+		
+		return new Pair<Tab>(tab, tabElement);
+	}
+
+	private Pair<ButtonBar> createButtonBar() {
+		ButtonBar pane = new ButtonBar();
+		TestModelElement<ButtonBar> paneElement = new TestModelElement<>(pane);
+		
+		Button button1 = new Button("Button 01 in ButtonBar");
+		pane.getButtons().add(button1);
+		TestModelElement<Button> button1Element = new TestModelElement<>(button1);
+		paneElement.children.add(button1Element);
+		
+		Button button2 = new Button("Button 02 in ButtonBar");
+		pane.getButtons().add(button2);
+		TestModelElement<Button> button2Element = new TestModelElement<>(button2);
+		paneElement.children.add(button2Element);
+		
+		return new Pair<ButtonBar>(pane, paneElement);
+	}
+
+	private Pair<Tab> createToolBarTab() {
+		Tab tab = new Tab("ToolBar Test");
+		TestModelElement<Tab> tabElement = new TestModelElement<>(tab);
+		
+		Pair<ToolBar> toolbar = createToolBar();
+		tab.setContent(toolbar.node);
+		tabElement.children.add(toolbar.element);
+		
+		return new Pair<Tab>(tab, tabElement);
+	}
+
+	private Pair<ToolBar> createToolBar() {
+		ToolBar pane = new ToolBar();
+		TestModelElement<ToolBar> paneElement = new TestModelElement<>(pane);
+		
+		Button button1 = new Button("Button 01 in ToolBar");
+		pane.getItems().add(button1);
+		TestModelElement<Button> button1Element = new TestModelElement<>(button1);
+		paneElement.children.add(button1Element);
+		createContextMenu(button1, button1Element);
+		
+		Separator sep = new Separator();
+		pane.getItems().add(sep);
+		TestModelElement<Separator> sepElement = new TestModelElement<>(sep);
+		paneElement.children.add(sepElement);
+		createContextMenu(sep, sepElement);
+		
+		Button button2 = new Button("Button 02 in ToolBar");
+		pane.getItems().add(button2);
+		TestModelElement<Button> button2Element = new TestModelElement<>(button2);
+		paneElement.children.add(button2Element);
+		createContextMenu(button2, button2Element);
+		
+		return new Pair<ToolBar>(pane, paneElement);
 	}
 
 	private Pair<Tab> createContextMenuTab() {

@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Control;
 import javafx.scene.control.Menu;
@@ -175,6 +176,8 @@ public class NodeAdapter {
 			((SplitPane)fxObject).getItems().forEach(node -> result.add(new NodeAdapter(node)));
 		} else if (fxObject instanceof ToolBar) {
 			((ToolBar)fxObject).getItems().forEach(node -> result.add(new NodeAdapter(node)));
+		} else if (fxObject instanceof ButtonBar) {
+			((ButtonBar)fxObject).getButtons().forEach(button -> result.add(new NodeAdapter(button)));
 		}
 		
 		// context menu
