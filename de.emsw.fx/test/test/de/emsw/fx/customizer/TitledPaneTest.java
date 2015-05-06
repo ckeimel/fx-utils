@@ -12,7 +12,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import de.emsw.fx.customizer.TitledPaneCustomizer;
+import de.emsw.fx.customizer.GraphCustomizer;
 
 public class TitledPaneTest extends Application {
 
@@ -24,7 +24,7 @@ public class TitledPaneTest extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = createContents();
-			TitledPaneCustomizer.process(root);
+			GraphCustomizer.process(root);
 			Scene scene = new Scene(root);
 			primaryStage.setTitle("Customized TitledPanes");
 			primaryStage.setScene(scene);

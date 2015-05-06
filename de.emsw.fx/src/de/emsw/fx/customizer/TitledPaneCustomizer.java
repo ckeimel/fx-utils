@@ -1,28 +1,26 @@
 package de.emsw.fx.customizer;
 
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyEvent;
-import de.emsw.fx.NodeAdapter;
 
 public class TitledPaneCustomizer {
 
-	public static void process(Node root) {
-		NodeAdapter adapter = new NodeAdapter(root);
-		adapter.accept(nodeAdapter -> {
-			if (nodeAdapter.getFXObject() instanceof TitledPane)
-				customize((TitledPane)nodeAdapter.getFXObject());
-			return true;
-		});
-	}
-
 	public static void customize(TitledPane titledPane) {
+		/*
+		 * TODO Mit Java 8u60 zu entfernen, wenn RT-40166 integriert wurde
+		 * Siehe: https://javafx-jira.kenai.com/browse/RT-40166
+		 */
 		titledPane.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
 			keyPressed(event, titledPane);
 		});
+		
+		/*
+		 * TODO Mit Java 9 zu entfernen, wenn RT-40570 integriert wurde
+		 * Siehe: https://javafx-jira.kenai.com/browse/RT-40570
+		 */
 		titledPane.focusTraversableProperty().bind(titledPane.collapsibleProperty());
 	}
 
